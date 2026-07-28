@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classe Eventos | Eventos Corporativos de Alto Padrão</title>
+<meta name="description" content="Do planejamento à execução, entregamos eventos corporativos, feiras, convenções e ações promocionais com excelência, criatividade e total compromisso com resultados.">
+
+<!-- Segurança: restringe de onde o navegador pode carregar scripts, estilos, fontes e imagens.
+     'unsafe-inline' em script-src/style-src é necessário porque o Tailwind (via CDN) injeta
+     estilos dinamicamente e o site usa pequenos scripts inline; ainda assim, qualquer script/estilo
+     de origem não listada abaixo é bloqueado. -->
+<!-- Os domínios do Google Tag Manager/Analytics/Ads já estão liberados aqui embaixo (script-src,
+     connect-src, img-src) para quando a tag de conversão for ativada — ver bloco "GOOGLE ADS /
+     GA4" mais abaixo no <head>. Não é preciso mexer no CSP depois. -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'none';
+  script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net;
+  font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net;
+  img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com;
+  connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net;
+  base-uri 'self';
+  form-action 'self';
+  object-src 'none';
+  frame-ancestors 'none';
+  upgrade-insecure-requests;
+">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<!-- TODO: quando o domínio final estiver definido, adicionar aqui a tag canônica, ex:
+     <link rel="canonical" href="https://classeeventos.com.br/"> -->
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+
+<!-- Open Graph / compartilhamento em redes sociais e WhatsApp -->
+<!-- TODO: quando o domínio final estiver definido, atualizar "og:url" com a URL completa (ex: https://classeeventos.com.br/) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Classe Eventos | Eventos Corporativos de Alto Padrão">
+<meta property="og:description" content="Do planejamento à execução, entregamos eventos corporativos, feiras, convenções e ações promocionais com excelência, criatividade e total compromisso com resultados.">
+<meta property="og:image" content="./assets/hero-bg.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Classe Eventos | Eventos Corporativos de Alto Padrão">
+<meta name="twitter:description" content="Do planejamento à execução, entregamos eventos corporativos, feiras, convenções e ações promocionais com excelência, criatividade e total compromisso com resultados.">
+<meta name="twitter:image" content="./assets/hero-bg.jpg">
+
+<!-- Dados estruturados (Schema.org) — ajuda o Google a entender que é um negócio local e pode
+     gerar rich results na busca. TODO: atualizar "url" quando o domínio final estiver definido. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Classe Eventos",
+  "description": "Agência de eventos corporativos, feiras, congressos e ações promocionais de alto padrão, do planejamento à execução.",
+  "url": "https://SEU-DOMINIO-AQUI.com/",
+  "telephone": "+551127470264",
+  "email": "contato@classeeventos.com.br",
+  "image": "./assets/hero-bg.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R. Dias Coelho, 253 - Cidade Líder",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  },
+  "areaServed": "BR"
+}
+</script>
+
+<!-- ============================================================
+     GOOGLE ADS / GA4: bloco pronto para ativar quando a cliente
+     tiver o Measurement ID (GA4, formato G-XXXXXXX) e ou o
+     Conversion ID do Google Ads (formato AW-XXXXXXXXX).
+     Como ativar:
+       1) Apague estas duas linhas de comentario (abertura e fechamento) que envolvem o bloco abaixo.
+       2) Troque G-XXXXXXX (e ou AW-XXXXXXXXX) pelos IDs reais.
+     O CSP no topo do head ja libera os dominios necessarios,
+     nao precisa alterar mais nada.
+
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-XXXXXXX');
+       // Se tambem usar Google Ads, adicione a segunda config abaixo:
+       // gtag('config', 'AW-XXXXXXXXX');
+     </script>
+     ============================================================ -->
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'gold-1': '#BF953F',
+          'gold-2': '#FCF6BA',
+          'gold-3': '#B38728',
+          'gold-4': '#FBF5B7',
+          'bg-black': '#050505',
+        },
+        fontFamily: {
+          heading: ['Montserrat', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root {
+    --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 100%);
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  html, body {
+    background-color: #050505;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #A3A3A3;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Gold gradient background (buttons) */
+  .bg-gold-gradient {
+    background: var(--gold-gradient);
+  }
+
+  .btn-gold {
+    background: var(--gold-gradient);
+    color: #050505;
+    font-weight: 700;
+    transition: all 0.35s ease;
+    box-shadow: 0 4px 20px rgba(191, 149, 63, 0.25);
+  }
+
+  .btn-gold:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(191, 149, 63, 0.45);
+  }
+
+  .btn-outline-gold {
+    border: 1px solid rgba(191, 149, 63, 0.5);
+    color: #FCF6BA;
+    transition: all 0.35s ease;
+  }
+
+  .btn-outline-gold:hover {
+    background: rgba(191, 149, 63, 0.1);
+    border-color: rgba(252, 246, 186, 0.9);
+    transform: scale(1.03);
+  }
+
+  /* Glassmorphism cards */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(191, 149, 63, 0.18);
+    transition: all 0.45s ease;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(252, 246, 186, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 25px rgba(191, 149, 63, 0.12);
+    transform: translateY(-6px);
+  }
+
+  .glass-card .icon-wrap {
+    background: rgba(191, 149, 63, 0.08);
+    border: 1px solid rgba(191, 149, 63, 0.3);
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(2.5rem);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Header: fundo sutil sempre presente, para não colidir visualmente com o hero */
+  header {
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 80%, transparent 100%);
+  }
+
+  /* Header scrolled state */
+  header.scrolled {
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(191, 149, 63, 0.15);
+  }
+
+  /* Hero background */
+  .hero-bg {
+    background-image: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.82)), url('./assets/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: #0a0a0a;
+  }
+
+  /* Sombra atrás dos textos do hero: escura na esquerda, clareando para a direita */
+  .hero-left-shade {
+    background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.25) 65%, transparent 100%);
+  }
+
+  /* Marquee clientes */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 32s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .client-logo {
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition: all 0.4s ease;
+  }
+
+  .client-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.06);
+  }
+
+  /* Timeline */
+  .timeline-line {
+    background: linear-gradient(180deg, rgba(191,149,63,0) 0%, rgba(191,149,63,0.7) 15%, rgba(191,149,63,0.7) 85%, rgba(191,149,63,0) 100%);
+  }
+
+  .timeline-dot {
+    background: var(--gold-gradient);
+    box-shadow: 0 0 0 6px rgba(5,5,5,1), 0 0 20px rgba(191, 149, 63, 0.6);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #BF953F, #B38728);
+    border-radius: 10px;
+  }
+
+  /* Section divider glow */
+  .divider-glow {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(191,149,63,0.5), transparent);
+  }
+</style>
+</head>
+
+<body class="bg-bg-black antialiased overflow-x-hidden">
+
+<!-- ======================= HEADER ======================= -->
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-3">
+    <a href="#" class="flex items-center gap-2 font-heading font-extrabold text-xl md:text-2xl tracking-wide shrink-0">
+      <img src="./assets/logo.png" alt="Classe Eventos" width="400" height="400" class="h-24 md:h-32 w-auto"
+           onerror="this.style.display='none'; document.getElementById('logo-fallback-header').classList.remove('hidden');">
+      <span id="logo-fallback-header" class="hidden">
+        <span class="text-white">CLASSE</span><span class="text-gold-gradient">&nbsp;EVENTOS</span>
+      </span>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-9 font-body text-sm tracking-wide text-neutral-300">
+      <li><a href="#quem-somos" class="hover:text-gold-2 transition-colors duration-300">Quem Somos</a></li>
+      <li><a href="#servicos" class="hover:text-gold-2 transition-colors duration-300">Serviços</a></li>
+      <li><a href="#como-trabalhamos" class="hover:text-gold-2 transition-colors duration-300">Como Trabalhamos</a></li>
+      <li><a href="#clientes" class="hover:text-gold-2 transition-colors duration-300">Clientes</a></li>
+    </ul>
+
+    <a href="https://wa.me/5511947319138?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20evento."
+       target="_blank" rel="noopener noreferrer"
+       class="btn-gold hidden md:inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-sm font-heading font-bold tracking-wide shrink-0">
+      <i class="bi bi-whatsapp text-base"></i>
+      SOLICITAR ORÇAMENTO
+    </a>
+
+    <button id="menu-toggle" class="lg:hidden text-white text-3xl shrink-0" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+      <i class="bi bi-list"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden hidden flex-col gap-1 bg-black/95 backdrop-blur-lg border-t border-gold-1/20 px-6 py-6">
+    <a href="#quem-somos" class="py-3 text-neutral-200 border-b border-white/5">Quem Somos</a>
+    <a href="#servicos" class="py-3 text-neutral-200 border-b border-white/5">Serviços</a>
+    <a href="#como-trabalhamos" class="py-3 text-neutral-200 border-b border-white/5">Como Trabalhamos</a>
+    <a href="#clientes" class="py-3 text-neutral-200 border-b border-white/5">Clientes</a>
+    <a href="https://wa.me/5511947319138?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20evento."
+       target="_blank" rel="noopener noreferrer"
+       class="btn-gold mt-4 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-heading font-bold">
+      <i class="bi bi-whatsapp"></i> SOLICITAR ORÇAMENTO
+    </a>
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero-bg relative w-full min-h-screen flex items-center px-6 md:px-12 lg:px-20 pt-36 md:pt-44 pb-16">
+  <div class="absolute inset-0 pointer-events-none hero-left-shade"></div>
+
+  <div class="relative w-full max-w-7xl mx-auto">
+    <div class="max-w-xl lg:max-w-2xl text-left">
+      <span class="reveal inline-block font-heading text-xs md:text-sm tracking-[0.35em] uppercase text-gold-2/90 border border-gold-1/30 rounded-full px-5 py-2 mb-8">
+        Eventos Corporativos &amp; Ações Promocionais
+      </span>
+
+      <h1 class="reveal font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-8">
+        Transformamos Eventos em <span class="text-gold-gradient">Experiências Memoráveis</span>
+      </h1>
+
+      <p class="reveal font-body font-light text-base md:text-xl text-neutral-300 mb-12 leading-relaxed">
+        Do planejamento à execução, entregamos eventos corporativos, feiras, convenções e ações promocionais com excelência, criatividade e total compromisso com resultados.
+      </p>
+
+      <a href="https://wa.me/5511947319138?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20evento."
+         target="_blank" rel="noopener noreferrer"
+         class="reveal btn-gold inline-flex items-center gap-3 px-9 py-5 rounded-lg text-base md:text-lg font-heading font-bold tracking-wide">
+        <i class="bi bi-whatsapp text-xl"></i>
+        SOLICITAR ORÇAMENTO
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold-2/60 animate-bounce">
+    <i class="bi bi-chevron-down text-2xl"></i>
+  </div>
+</section>
+
+<!-- ======================= CLIENTES ======================= -->
+<section id="clientes" class="relative py-16 md:py-20 border-y border-white/5 bg-black/40 scroll-mt-32 md:scroll-mt-40">
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="reveal text-center font-heading text-sm md:text-base tracking-[0.3em] uppercase text-neutral-400 mb-10">
+      Empresas que confiam na Classe Eventos
+    </p>
+  </div>
+
+  <div class="reveal relative w-full overflow-hidden">
+    <div class="marquee-track items-center gap-16 md:gap-24 px-8">
+      <img src="./assets/cliente-estadao.png" alt="Estadão" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-roldao.png" alt="Roldão" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-lopes.png" alt="Lopes" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-assai.png" alt="Assaí" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-barbosa.png" alt="Barbosa" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-calvo.png" alt="Calvo" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-oxxo.png" alt="OXXO" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-rede-construir.png" alt="Rede Construir" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <!-- duplicado para loop infinito -->
+      <img src="./assets/cliente-estadao.png" alt="Estadão" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-roldao.png" alt="Roldão" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-lopes.png" alt="Lopes" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-assai.png" alt="Assaí" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-barbosa.png" alt="Barbosa" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-calvo.png" alt="Calvo" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-oxxo.png" alt="OXXO" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+      <img src="./assets/cliente-rede-construir.png" alt="Rede Construir" width="600" height="600" loading="lazy" class="client-logo h-24 md:h-32 w-auto">
+    </div>
+  </div>
+</section>
+
+<!-- ======================= QUEM SOMOS ======================= -->
+<section id="quem-somos" class="relative py-24 md:py-32 px-6 scroll-mt-32 md:scroll-mt-40">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+      <div>
+        <span class="reveal inline-block font-heading text-xs tracking-[0.3em] uppercase text-gold-2/80 mb-4">Quem Somos</span>
+        <h2 class="reveal font-heading font-extrabold text-3xl md:text-5xl text-white leading-tight mb-6">
+          Sua parceira estratégica para <span class="text-gold-gradient">eventos de alto impacto</span>.
+        </h2>
+        <p class="reveal font-body font-light text-neutral-400 text-base md:text-lg leading-relaxed">
+          A Classe Eventos nasceu para oferecer soluções completas em eventos corporativos, promocionais e sociais. Nossa missão é transformar objetivos em experiências marcantes, cuidando de cada detalhe para que nossos clientes foquem apenas nos resultados.
+        </p>
+      </div>
+      <div class="reveal relative">
+        <div class="aspect-[4/3] rounded-2xl border border-gold-1/25 bg-white/[0.02] overflow-hidden">
+          <img src="./assets/quem-somos.jpg" alt="Equipe Classe Eventos em ação" width="1600" height="1200" loading="lazy" class="w-full h-full object-cover" onerror="this.style.opacity=0">
+        </div>
+        <div class="absolute -bottom-6 -left-6 w-32 h-32 rounded-2xl bg-gold-gradient opacity-10 blur-2xl"></div>
+      </div>
+    </div>
+
+    <!-- Diferenciais -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal glass-card rounded-2xl p-8 flex items-start gap-5">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
+          <i class="bi bi-clipboard2-check-fill text-2xl text-gold-2"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-white text-lg mb-1">Planejamento personalizado</h3>
+          <p class="font-body text-sm text-neutral-400 leading-relaxed">Cada evento é único e desenhado sob medida para os seus objetivos.</p>
+        </div>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8 flex items-start gap-5">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
+          <i class="bi bi-people-fill text-2xl text-gold-2"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-white text-lg mb-1">Equipe especializada</h3>
+          <p class="font-body text-sm text-neutral-400 leading-relaxed">Profissionais experientes em todas as etapas da produção.</p>
+        </div>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8 flex items-start gap-5">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
+          <i class="bi bi-geo-alt-fill text-2xl text-gold-2"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-white text-lg mb-1">Cobertura nacional</h3>
+          <p class="font-body text-sm text-neutral-400 leading-relaxed">Atuação em todo o território nacional, onde seu evento acontecer.</p>
+        </div>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8 flex items-start gap-5">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
+          <i class="bi bi-headset text-2xl text-gold-2"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-white text-lg mb-1">Atendimento exclusivo</h3>
+          <p class="font-body text-sm text-neutral-400 leading-relaxed">Um time dedicado para acompanhar seu projeto do início ao fim.</p>
+        </div>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8 flex items-start gap-5">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
+          <i class="bi bi-diagram-3-fill text-2xl text-gold-2"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-white text-lg mb-1">Gestão completa</h3>
+          <p class="font-body text-sm text-neutral-400 leading-relaxed">Controle total do cronograma, fornecedores e operação do evento.</p>
+        </div>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8 flex items-start gap-5">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
+          <i class="bi bi-patch-check-fill text-2xl text-gold-2"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-white text-lg mb-1">Parceiros homologados</h3>
+          <p class="font-body text-sm text-neutral-400 leading-relaxed">Rede de fornecedores qualificados e homologados para cada demanda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto divider-glow"></div>
+
+<!-- ======================= SERVIÇOS ======================= -->
+<section id="servicos" class="relative py-24 md:py-32 px-6 scroll-mt-32 md:scroll-mt-40">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="reveal inline-block font-heading text-xs tracking-[0.3em] uppercase text-gold-2/80 mb-4">O que fazemos</span>
+      <h2 class="reveal font-heading font-extrabold text-3xl md:text-5xl text-white leading-tight mb-6">Nossos Serviços</h2>
+      <p class="reveal font-body font-light text-neutral-400 text-base md:text-lg leading-relaxed">
+        Soluções completas para transformar qualquer ocasião em uma experiência de altíssimo padrão.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-briefcase-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Eventos Corporativos</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Planejamento e execução de convenções, reuniões, encontros empresariais, workshops e eventos institucionais que fortalecem o relacionamento entre empresas, colaboradores e clientes.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-building-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Feiras e Congressos</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Organização completa de feiras, congressos, simpósios e exposições, incluindo montagem, credenciamento, logística e operação.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-rocket-takeoff-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Lançamento de Produtos</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Criamos experiências para apresentar novos produtos e serviços ao mercado, gerando impacto, mídia e aproximação com o público.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-scissors text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Inaugurações</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Planejamento completo para inauguração de empresas, lojas, concessionárias, condomínios e empreendimentos.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-balloon-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Confraternizações</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Eventos de final de ano, festas empresariais, aniversários corporativos e celebrações especiais.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-person-badge-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Casting de Promotores, Recepcionistas e Hostess</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Seleção de profissionais treinados para atendimento ao público, recepção VIP, ações promocionais, feiras e eventos corporativos.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-palette-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Cenografia e Decoração</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Projetos exclusivos de ambientação, decoração temática, mobiliário, iluminação decorativa e identidade visual do evento.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-soundwave text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Sonorização, Iluminação e Audiovisual</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Equipamentos modernos para som, iluminação cênica, painéis de LED, telões, projeções, transmissão ao vivo e operação técnica.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-egg-fried text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Buffet e Gastronomia</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Coffee break, brunch, almoço, jantar, coquetel, finger food, churrasco, buffet completo e experiências gastronômicas personalizadas.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-tools text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Estruturas para Eventos</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Palcos, tendas, geradores, climatização, pisos, grades, banheiros, mobiliário, estandes e toda infraestrutura necessária.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-kanban-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Produção Executiva</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Gerenciamento completo do evento, cronograma, fornecedores, equipe operacional e acompanhamento em tempo real.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-megaphone-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Marketing Promocional</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Ações promocionais, blitz, sampling, ativações de marca, distribuição de brindes, campanhas em PDV e experiências para o consumidor.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-gift-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Brindes Personalizados</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Desenvolvimento e fornecimento de brindes corporativos exclusivos para fortalecer sua marca.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-tv-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Locação de Equipamentos</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Painéis de LED, televisores, tablets, notebooks, totens, rádios comunicadores, impressoras e equipamentos para eventos.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-qr-code text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Credenciamento Digital</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Sistema de inscrições, QR Code, impressão de crachás, controle de acesso e relatórios em tempo real.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-2xl p-8">
+        <div class="icon-wrap w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+          <i class="bi bi-mic-fill text-2xl text-gold-2"></i>
+        </div>
+        <h3 class="font-heading font-bold text-white text-lg mb-3">Cerimonial</h3>
+        <p class="font-body text-sm text-neutral-400 leading-relaxed">Mestres de cerimônia, protocolo, roteiro, condução oficial do evento e coordenação das apresentações.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto divider-glow"></div>
+
+<!-- ======================= COMO TRABALHAMOS ======================= -->
+<section id="como-trabalhamos" class="relative py-24 md:py-32 px-6 scroll-mt-32 md:scroll-mt-40">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <span class="reveal inline-block font-heading text-xs tracking-[0.3em] uppercase text-gold-2/80 mb-4">Nosso Processo</span>
+      <h2 class="reveal font-heading font-extrabold text-3xl md:text-5xl text-white leading-tight mb-6">Como Trabalhamos</h2>
+      <p class="reveal font-body font-light text-neutral-400 text-base md:text-lg leading-relaxed">
+        Um método claro e consistente, do primeiro contato à entrega dos resultados.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="timeline-line hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"></div>
+
+      <div class="space-y-16 md:space-y-0">
+
+        <div class="reveal relative md:grid md:grid-cols-2 md:gap-16 md:items-center md:mb-24">
+          <div class="md:text-right md:pr-16">
+            <span class="font-heading text-5xl font-extrabold text-gold-gradient">01</span>
+            <h3 class="font-heading font-bold text-white text-xl mt-2 mb-2">Entendemos seu objetivo.</h3>
+            <p class="font-body text-sm text-neutral-400 leading-relaxed">Ouvimos com atenção suas metas, público e expectativas para o evento.</p>
+          </div>
+          <div class="hidden md:block absolute left-1/2 top-2 -translate-x-1/2 w-5 h-5 rounded-full timeline-dot"></div>
+          <div class="hidden md:block"></div>
+        </div>
+
+        <div class="reveal relative md:grid md:grid-cols-2 md:gap-16 md:items-center md:mb-24">
+          <div class="hidden md:block"></div>
+          <div class="hidden md:block absolute left-1/2 top-2 -translate-x-1/2 w-5 h-5 rounded-full timeline-dot"></div>
+          <div class="md:pl-16">
+            <span class="font-heading text-5xl font-extrabold text-gold-gradient">02</span>
+            <h3 class="font-heading font-bold text-white text-xl mt-2 mb-2">Criamos um projeto exclusivo.</h3>
+            <p class="font-body text-sm text-neutral-400 leading-relaxed">Desenvolvemos um conceito criativo e estratégico, feito sob medida.</p>
+          </div>
+        </div>
+
+        <div class="reveal relative md:grid md:grid-cols-2 md:gap-16 md:items-center md:mb-24">
+          <div class="md:text-right md:pr-16">
+            <span class="font-heading text-5xl font-extrabold text-gold-gradient">03</span>
+            <h3 class="font-heading font-bold text-white text-xl mt-2 mb-2">Planejamos todos os detalhes.</h3>
+            <p class="font-body text-sm text-neutral-400 leading-relaxed">Cronograma, fornecedores, equipe e logística alinhados com precisão.</p>
+          </div>
+          <div class="hidden md:block absolute left-1/2 top-2 -translate-x-1/2 w-5 h-5 rounded-full timeline-dot"></div>
+          <div class="hidden md:block"></div>
+        </div>
+
+        <div class="reveal relative md:grid md:grid-cols-2 md:gap-16 md:items-center md:mb-24">
+          <div class="hidden md:block"></div>
+          <div class="hidden md:block absolute left-1/2 top-2 -translate-x-1/2 w-5 h-5 rounded-full timeline-dot"></div>
+          <div class="md:pl-16">
+            <span class="font-heading text-5xl font-extrabold text-gold-gradient">04</span>
+            <h3 class="font-heading font-bold text-white text-xl mt-2 mb-2">Executamos com excelência.</h3>
+            <p class="font-body text-sm text-neutral-400 leading-relaxed">Nossa equipe garante que tudo aconteça exatamente como planejado.</p>
+          </div>
+        </div>
+
+        <div class="reveal relative md:grid md:grid-cols-2 md:gap-16 md:items-center">
+          <div class="md:text-right md:pr-16">
+            <span class="font-heading text-5xl font-extrabold text-gold-gradient">05</span>
+            <h3 class="font-heading font-bold text-white text-xl mt-2 mb-2">Avaliamos os resultados e buscamos melhoria contínua.</h3>
+            <p class="font-body text-sm text-neutral-400 leading-relaxed">Analisamos métricas e feedbacks para elevar cada novo evento.</p>
+          </div>
+          <div class="hidden md:block absolute left-1/2 top-2 -translate-x-1/2 w-5 h-5 rounded-full timeline-dot"></div>
+          <div class="hidden md:block"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CTA FINAL ======================= -->
+<section class="relative py-24 md:py-32 px-6">
+  <div class="max-w-5xl mx-auto text-center glass-card rounded-3xl px-8 py-16 md:py-20 reveal">
+    <h2 class="font-heading font-extrabold text-3xl md:text-5xl text-white leading-tight mb-6">
+      Grandes empresas precisam de <span class="text-gold-gradient">grandes eventos</span>.
+    </h2>
+    <p class="font-body font-light text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+      Atendemos empresas de todos os portes com soluções completas, organização impecável e foco total na experiência dos convidados.
+    </p>
+    <a href="https://wa.me/5511947319138?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20evento."
+       target="_blank" rel="noopener noreferrer"
+       class="btn-gold inline-flex items-center gap-3 px-10 py-5 rounded-lg text-base md:text-lg font-heading font-bold tracking-wide">
+      <i class="bi bi-whatsapp text-xl"></i>
+      SOLICITAR ORÇAMENTO
+    </a>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="relative border-t border-white/5 pt-16 pb-8 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2 font-heading font-extrabold text-xl mb-4">
+        <img src="./assets/logo.png" alt="Classe Eventos" width="400" height="400" loading="lazy" class="h-28 w-auto"
+             onerror="this.style.display='none'; document.getElementById('logo-fallback-footer').classList.remove('hidden');">
+        <span id="logo-fallback-footer" class="hidden">
+          <span class="text-white">CLASSE</span><span class="text-gold-gradient">&nbsp;EVENTOS</span>
+        </span>
+      </div>
+      <p class="font-body font-light text-sm text-neutral-500 max-w-sm leading-relaxed">
+        Eventos corporativos, feiras e ações promocionais de alto padrão, com excelência do planejamento à execução.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="font-heading font-bold text-white text-sm tracking-wide mb-5 uppercase">Links Rápidos</h4>
+      <ul class="space-y-3 font-body text-sm text-neutral-500">
+        <li><a href="#quem-somos" class="hover:text-gold-2 transition-colors duration-300">Quem Somos</a></li>
+        <li><a href="#servicos" class="hover:text-gold-2 transition-colors duration-300">Serviços</a></li>
+        <li><a href="#como-trabalhamos" class="hover:text-gold-2 transition-colors duration-300">Como Trabalhamos</a></li>
+        <li><a href="#clientes" class="hover:text-gold-2 transition-colors duration-300">Clientes</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-heading font-bold text-white text-sm tracking-wide mb-5 uppercase">Contato</h4>
+      <ul class="space-y-3 font-body text-sm text-neutral-500">
+        <li class="flex items-start gap-2">
+          <i class="bi bi-envelope-fill text-gold-2 mt-0.5 shrink-0"></i>
+          <span class="min-w-0 break-words">contato@classeeventos.com.br</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <i class="bi bi-whatsapp text-gold-2 mt-0.5 shrink-0"></i>
+          <a href="https://wa.me/5511947319138" target="_blank" rel="noopener noreferrer" class="min-w-0 break-words hover:text-gold-2 transition-colors duration-300">Karina: (11) 94731-9138</a>
+        </li>
+        <li class="flex items-start gap-2">
+          <i class="bi bi-whatsapp text-gold-2 mt-0.5 shrink-0"></i>
+          <a href="https://wa.me/5511977313911" target="_blank" rel="noopener noreferrer" class="min-w-0 break-words hover:text-gold-2 transition-colors duration-300">Lindsay: (11) 97731-3911</a>
+        </li>
+        <li class="flex items-start gap-2">
+          <i class="bi bi-telephone-fill text-gold-2 mt-0.5 shrink-0"></i>
+          <span class="min-w-0 break-words">(11) 2747-0264</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <i class="bi bi-geo-alt-fill text-gold-2 mt-0.5 shrink-0"></i>
+          <span class="min-w-0 break-words">R. Dias Coelho, 253 - Cidade Líder, São Paulo - SP</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto border-t border-white/5 pt-8 text-center">
+    <p class="font-body text-xs text-neutral-600">&copy; 2026 Classe Eventos - Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- ======================= JAVASCRIPT ======================= -->
+<script>
+  // Header: fundo ao rolar
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // Menu mobile
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    if (isHidden) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      menuToggle.innerHTML = '<i class="bi bi-x-lg"></i>';
+      menuToggle.setAttribute('aria-expanded', 'true');
+    } else {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      menuToggle.innerHTML = '<i class="bi bi-list"></i>';
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      menuToggle.innerHTML = '<i class="bi bi-list"></i>';
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal com IntersectionObserver
+  const revealElements = document.querySelectorAll('.reveal');
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  revealElements.forEach((el, index) => {
+    el.style.transitionDelay = `${(index % 6) * 0.08}s`;
+    revealObserver.observe(el);
+  });
+</script>
+
+</body>
+</html>

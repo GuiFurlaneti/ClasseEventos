@@ -1,0 +1,5 @@
+# Arquivos-fonte de design (pesados, não usados pelo site publicado)
+assets/*.psd
+
+# Ferramentas locais de preview/dev (não fazem parte do site)
+.claude/
