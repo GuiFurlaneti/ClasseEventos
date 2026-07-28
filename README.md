@@ -31,16 +31,16 @@
 
 ## 🧩 Principais Funcionalidades
 
-✅ Scroll reveal suave em todas as seções ao rolar a página
-✅ Header com fundo dinâmico (transparente no topo, sólido ao rolar)
-✅ Cards de serviços em formato accordion, cobrindo 9 categorias e mais de 80 serviços
-✅ Marquee infinito com logos de clientes reais
-✅ Timeline com as 5 etapas do processo de trabalho
-✅ Múltiplos botões de WhatsApp com mensagem pré-preenchida
-✅ Menu mobile com `aria-expanded` e fechamento automático ao navegar
-✅ SEO completo com dados estruturados (JSON-LD LocalBusiness)
-✅ Favicon real com suporte a dispositivos Apple (apple-touch-icon)
-✅ Content Security Policy e Subresource Integrity para proteção contra ataques
+✅ Scroll reveal suave em todas as seções ao rolar a página  
+✅ Header com fundo dinâmico (transparente no topo, sólido ao rolar)  
+✅ Cards de serviços em formato accordion, cobrindo 9 categorias e mais de 80 serviços  
+✅ Marquee infinito com logos de clientes reais  
+✅ Timeline com as 5 etapas do processo de trabalho  
+✅ Múltiplos botões de WhatsApp com mensagem pré-preenchida  
+✅ Menu mobile com `aria-expanded` e fechamento automático ao navegar  
+✅ SEO completo com dados estruturados (JSON-LD LocalBusiness)  
+✅ Favicon real com suporte a dispositivos Apple (apple-touch-icon)  
+✅ Content Security Policy e Subresource Integrity para proteção contra ataques  
 ✅ Estrutura pronta para ativar Google Ads / GA4 (basta inserir os IDs reais)
 
 ---
