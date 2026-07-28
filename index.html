@@ -295,6 +295,22 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(191,149,63,0.5), transparent);
   }
+
+  /* Accordion dos cards de serviços: a altura muda instantaneamente (via
+     max-height fixo e generoso, maior que qualquer conteúdo real) e a
+     suavidade vem da opacidade, evitando um bug de alguns navegadores em que
+     transicionar max-height até um valor perto do conteúdo zera a altura. */
+  .service-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .service-content.is-open {
+    max-height: 1200px;
+    opacity: 1;
+  }
 </style>
 </head>
 
@@ -506,7 +522,7 @@
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
 
       <div class="reveal glass-card rounded-2xl overflow-hidden">
         <button type="button" class="service-toggle w-full flex items-center gap-4 p-8 text-left cursor-pointer" aria-expanded="false">
@@ -516,8 +532,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Produção de Eventos</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Da convenção ao lançamento, produzimos eventos que engajam equipes, fidelizam clientes e geram repercussão real para a sua marca.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Eventos de Lançamento</span></li>
@@ -531,7 +546,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Eventos de Relacionamento com Clientes</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Ações de Experiência de Marca</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -543,8 +557,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Marketing Promocional</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Ações de rua e ponto de venda pensadas para aumentar o fluxo, a experimentação do produto e o resultado em vendas.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Blitz Promocionais</span></li>
@@ -559,7 +572,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Demonstração de Produtos</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Ações em PDV</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -571,8 +583,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Parcerias</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Conexões estratégicas com comércios e negócios da região para ampliar o alcance e a divulgação do seu negócio.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Comércios Locais</span></li>
@@ -586,7 +597,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Escolas</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Empresas</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -598,8 +608,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Recursos Humanos</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Equipe completa e treinada para cada função do seu evento, do coordenador ao valet, garantindo qualidade do início ao fim.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Casting de Promotores</span></li>
@@ -613,7 +622,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Limpeza</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Valet</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -625,8 +633,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Produção e Logística</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Infraestrutura completa e fornecedores de confiança para que cada detalhe técnico funcione com precisão.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Fornecedores</span></li>
@@ -640,7 +647,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Iluminação</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Geradores</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -652,8 +658,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Brindes e Materiais</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Peças personalizadas e comunicação visual de alto impacto que fortalecem a identidade da sua marca em cada entrega.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Brindes Personalizados</span></li>
@@ -669,7 +674,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Materiais Gráficos</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Comunicação Visual</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -681,8 +685,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Tecnologia</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Soluções digitais que agilizam o check-in, engajam o público e transformam contatos em oportunidades de negócio.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>QR Codes</span></li>
@@ -692,7 +695,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Coleta de Leads</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Painéis de LED</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -704,8 +706,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Criação e Comunicação</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Conceitos criativos que transformam espaços e encantam os participantes, do convite à decoração temática.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Convites</span></li>
@@ -713,7 +714,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Cenografia</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Decoração Temática</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -725,8 +725,7 @@
           <h3 class="font-heading font-bold text-white text-lg flex-1">Tipos de Eventos</h3>
           <i class="bi bi-chevron-down text-gold-2 service-chevron transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="service-content grid transition-all duration-300" style="grid-template-rows: 0fr;">
-          <div class="overflow-hidden">
+        <div class="service-content">
             <p class="px-8 pt-0 pb-4 font-body text-sm text-neutral-300 leading-relaxed">Atendemos empresas de todos os segmentos, com soluções sob medida para cada tipo de evento e público.</p>
             <ul class="px-8 pb-8 space-y-2 font-body text-sm text-neutral-400">
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Eventos Corporativos</span></li>
@@ -745,7 +744,6 @@
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Ativações em Stands</span></li>
               <li class="flex items-start gap-2"><i class="bi bi-check2 text-gold-2 mt-0.5 shrink-0"></i><span>Experiências de Marca</span></li>
             </ul>
-          </div>
         </div>
       </div>
 
@@ -948,7 +946,7 @@
       const content = btn.nextElementSibling;
       const chevron = btn.querySelector('.service-chevron');
       btn.setAttribute('aria-expanded', String(!isExpanded));
-      content.style.gridTemplateRows = isExpanded ? '0fr' : '1fr';
+      content.classList.toggle('is-open', !isExpanded);
       chevron.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
     });
   });
