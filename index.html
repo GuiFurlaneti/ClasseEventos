@@ -10,17 +10,16 @@
      'unsafe-inline' em script-src/style-src é necessário porque o Tailwind (via CDN) injeta
      estilos dinamicamente e o site usa pequenos scripts inline; ainda assim, qualquer script/estilo
      de origem não listada abaixo é bloqueado. -->
-<!-- Os domínios do Google Tag Manager/Analytics/Ads já estão liberados aqui embaixo (script-src,
-     connect-src, img-src) para quando a tag de conversão for ativada — ver bloco "GOOGLE ADS /
-     GA4" mais abaixo no <head>. Não é preciso mexer no CSP depois. -->
+<!-- Domínios do Google liberados abaixo: Google Tag Manager (GTM-WK4PGPXM), Google Tag do
+     Google Ads (AW-18410788215) e os endpoints de conversão que essas tags chamam. -->
 <meta http-equiv="Content-Security-Policy" content="
   default-src 'none';
-  script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net;
+  script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net;
   font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net;
-  img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com;
-  connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net;
-  frame-src https://www.youtube-nocookie.com https://www.youtube.com;
+  img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://ad.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.google.com.br;
+  connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://ad.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.google.com.br;
+  frame-src https://www.youtube-nocookie.com https://www.youtube.com https://www.googletagmanager.com https://td.doubleclick.net;
   base-uri 'self';
   form-action 'self';
   object-src 'none';
@@ -28,6 +27,23 @@
   upgrade-insecure-requests;
 ">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+
+<!-- Google Tag Manager — logo após a CSP (a meta de CSP só protege o que vem depois dela). -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WK4PGPXM');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google tag (gtag.js) — Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18410788215"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18410788215');
+</script>
 
 <link rel="canonical" href="https://classeeventos.com.br/">
 
@@ -69,27 +85,6 @@
   "areaServed": "BR"
 }
 </script>
-
-<!-- ============================================================
-     GOOGLE ADS / GA4: bloco pronto para ativar quando a cliente
-     tiver o Measurement ID (GA4, formato G-XXXXXXX) e ou o
-     Conversion ID do Google Ads (formato AW-XXXXXXXXX).
-     Como ativar:
-       1) Apague estas duas linhas de comentario (abertura e fechamento) que envolvem o bloco abaixo.
-       2) Troque G-XXXXXXX (e ou AW-XXXXXXXXX) pelos IDs reais.
-     O CSP no topo do head ja libera os dominios necessarios,
-     nao precisa alterar mais nada.
-
-     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-     <script>
-       window.dataLayer = window.dataLayer || [];
-       function gtag(){dataLayer.push(arguments);}
-       gtag('js', new Date());
-       gtag('config', 'G-XXXXXXX');
-       // Se tambem usar Google Ads, adicione a segunda config abaixo:
-       // gtag('config', 'AW-XXXXXXXXX');
-     </script>
-     ============================================================ -->
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -315,6 +310,10 @@
 </head>
 
 <body class="bg-bg-black antialiased overflow-x-hidden">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK4PGPXM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- ======================= HEADER ======================= -->
 <header id="site-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
@@ -337,7 +336,7 @@
     </ul>
 
     <a href="https://wa.me/5511947319138?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20evento."
-       target="_blank" rel="noopener noreferrer"
+       target="_blank" rel="noopener noreferrer" data-conversao="header"
        class="btn-gold hidden md:inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-sm font-heading font-bold tracking-wide shrink-0">
       <i class="bi bi-whatsapp text-base"></i>
       SOLICITAR ORÇAMENTO
@@ -357,7 +356,7 @@
     <a href="#clientes" class="py-3 text-neutral-200 border-b border-white/5">Clientes</a>
     <a href="#contato" class="py-3 text-neutral-200 border-b border-white/5">Contato</a>
     <a href="https://wa.me/5511947319138?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20evento."
-       target="_blank" rel="noopener noreferrer"
+       target="_blank" rel="noopener noreferrer" data-conversao="menu-mobile"
        class="btn-gold mt-4 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-heading font-bold">
       <i class="bi bi-whatsapp"></i> SOLICITAR ORÇAMENTO
     </a>
@@ -383,7 +382,7 @@
       </p>
 
       <a href="https://wa.me/5511947319138?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20evento."
-         target="_blank" rel="noopener noreferrer"
+         target="_blank" rel="noopener noreferrer" data-conversao="hero"
          class="reveal btn-gold inline-flex items-center gap-3 px-9 py-5 rounded-lg text-base md:text-lg font-heading font-bold tracking-wide">
         <i class="bi bi-whatsapp text-xl"></i>
         SOLICITAR ORÇAMENTO
@@ -999,7 +998,7 @@
         <p class="font-body text-sm text-neutral-400 mb-6 leading-relaxed">Orçamento gratuito, resposta rápida e sem burocracia.</p>
         <div class="space-y-4">
           <a href="https://wa.me/5511947319138?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20evento."
-             target="_blank" rel="noopener noreferrer"
+             target="_blank" rel="noopener noreferrer" data-conversao="contato-karina"
              class="flex items-center gap-4 p-4 rounded-xl border border-gold-1/20 hover:border-gold-2/60 transition-colors duration-300">
             <i class="bi bi-whatsapp text-2xl text-gold-2 shrink-0"></i>
             <div>
@@ -1135,7 +1134,7 @@
         </li>
         <li class="flex items-start gap-2">
           <i class="bi bi-whatsapp text-gold-2 mt-0.5 shrink-0"></i>
-          <a href="https://wa.me/5511947319138" target="_blank" rel="noopener noreferrer" class="min-w-0 break-words hover:text-gold-2 transition-colors duration-300">Karina: (11) 94731-9138</a>
+          <a href="https://wa.me/5511947319138" target="_blank" rel="noopener noreferrer" data-conversao="rodape-karina" class="min-w-0 break-words hover:text-gold-2 transition-colors duration-300">Karina: (11) 94731-9138</a>
         </li>
         <li class="flex items-start gap-2">
           <i class="bi bi-telephone-fill text-gold-2 mt-0.5 shrink-0"></i>
@@ -1164,6 +1163,26 @@
 
 <!-- ======================= JAVASCRIPT ======================= -->
 <script>
+  // Conversão do Google Ads: dispara só quando a pessoa inicia um pedido de
+  // orçamento (clique num CTA marcado com data-conversao ou envio válido do
+  // formulário), nunca no carregamento da página. Qualquer falha de tracking
+  // (script bloqueado, ainda carregando etc.) é ignorada: o WhatsApp sempre abre.
+  function registrarConversao() {
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-18410788215/2eQsCIypsIEdEPeq-cpE'
+        });
+      }
+    } catch (err) {
+      // tracking nunca pode quebrar o site
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-conversao]')) registrarConversao();
+  });
+
   // Header: fundo ao rolar
   const header = document.getElementById('site-header');
   window.addEventListener('scroll', () => {
@@ -1218,8 +1237,10 @@
     }
 
     const btn = document.getElementById('f-submit');
+    if (btn.disabled) return; // já enviado: evita conversão duplicada
     btn.disabled = true;
     btn.textContent = 'Enviando…';
+    registrarConversao();
 
     const empresa = document.getElementById('f-empresa').value.trim();
     const email = document.getElementById('f-email').value.trim();
